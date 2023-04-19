@@ -1,0 +1,27 @@
+<table class="table table-striped table-hover tbl-custom" *ngIf="phoneContacts">
+  <thead class="rounded">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Número</th>
+      <th scope="col">Tipo</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let phone of phoneContacts; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ phone.phoneNumber }}</td>
+      <td>{{ phone.isWhatsapp ? "Whatsapp" : "Telefone" }}</td>
+      <td class="d-flex justify-content-end">
+        <div  class="px-2">
+          <a class="btn btn-sm btn-outline-primary">
+            Alterar
+          </a>
+        </div>
+        <div class="px-2">
+          <button class="btn btn-sm btn-outline-danger" (click)="onDelete(person)">Excluir</button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

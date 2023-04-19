@@ -14,13 +14,17 @@ import { PersonService } from './services/person.service';
 import { PersonComponent } from './person/person.component';
 import { PersonFormComponent } from './person/person-form/person-form.component';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { ContactEmailComponent } from './contact/contact-email/contact-email.component';
+import { ContactPhoneComponent } from './contact/contact-phone/contact-phone.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ContactComponent,
     PersonComponent,
-    PersonFormComponent
+    PersonFormComponent,
+    ContactEmailComponent,
+    ContactPhoneComponent,
   ],
   imports: [
     RouterModule,
