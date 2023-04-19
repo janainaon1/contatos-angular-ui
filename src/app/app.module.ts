@@ -16,6 +16,7 @@ import { PersonFormComponent } from './person/person-form/person-form.component'
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ContactEmailComponent } from './contact/contact-email/contact-email.component';
 import { ContactPhoneComponent } from './contact/contact-phone/contact-phone.component';
+import { EmailContactService } from './services/email-contact.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { ContactPhoneComponent } from './contact/contact-phone/contact-phone.com
     NgxMaskPipe,
     TabsModule.forRoot()
   ],
-  providers: [HttpClientModule, PersonService, provideNgxMask()],
+  providers: [HttpClientModule, PersonService, provideNgxMask(), EmailContactService],
   bootstrap: [AppComponent],
   schemas: [
     NO_ERRORS_SCHEMA

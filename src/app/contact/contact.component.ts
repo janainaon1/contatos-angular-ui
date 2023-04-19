@@ -26,6 +26,10 @@ export class ContactComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.onLoad();
+  }
+
+  onLoad() {
     this.route.params.subscribe((params) => {
       this.id = params['id'];
       if (this.id) {
@@ -40,9 +44,5 @@ export class ContactComponent implements OnInit {
       this.emailContacts = this.person.emailContacts;
       this.phoneContacts = this.person.phoneContacts;
     });
-  }
-
-  onDelete(person: Person) {
-    console.log(person);
   }
 }

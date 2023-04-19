@@ -29,7 +29,6 @@ export class PersonFormComponent implements OnInit {
       if (this.id) {
         this.getPessoa(this.id);
         this.title = 'Atualizar pessoa';
-        this.initForm();
       } else {
         this.title = 'Adicionar pessoa';
         this.initForm();
@@ -98,7 +97,7 @@ export class PersonFormComponent implements OnInit {
 
     return {
       'is-invalid': !field?.valid && (this.submitted || field?.touched),
-       'is-valid': field?.valid,
+      //  'is-valid': field?.valid,
     }
   }
 }

@@ -17,10 +17,10 @@
     <div class="card-body">
       <tabset [justified]="true">
         <tab heading="E-mails de contato" id="tab1">
-          <app-contact-email [person]="person" [emailContacts]="emailContacts"></app-contact-email>
+          <app-contact-email [person]="person" [emailContacts]="emailContacts" (onLoad)="onLoad()"></app-contact-email>
         </tab>
         <tab heading="Telefones de contato">
-          <app-contact-phone [person]="person" [phoneContacts]="phoneContacts"></app-contact-phone>
+          <app-contact-phone [person]="person" [phoneContacts]="phoneContacts" (onLoad)="onLoad()"></app-contact-phone>
         </tab>
       </tabset>
     </div>
