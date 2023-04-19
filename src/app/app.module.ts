@@ -11,8 +11,8 @@ import { AppComponent } from './app.component';
 import { ContactComponent } from './contact/contact.component';
 import { AppRoutingModule } from './app-routing.module';
 import { PersonService } from './services/person.service';
-import { PersonComponent } from './components/person/person.component';
-import { PersonFormComponent } from './components/person/person-form/person-form.component';
+import { PersonComponent } from './person/person.component';
+import { PersonFormComponent } from './person/person-form/person-form.component';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 
 @NgModule({
