@@ -1,4 +1,6 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Person } from 'src/app/models/person';
 import { PersonService } from 'src/app/services/person.service';
 
@@ -13,7 +15,8 @@ export class PersonComponent implements OnInit {
   personList: Person[] = [];
 
   constructor(
-    private personService: PersonService
+    private personService: PersonService,
+    private toastService: ToastrService
     ) {}
 
   ngOnInit() {
@@ -28,9 +31,22 @@ export class PersonComponent implements OnInit {
 
   onDelete(person: Person) {
     if (person.id) {
-      this.personService.Delete(person.id).subscribe(result => {
-        alert("Pessoa excluída com sucesso");
-        this.onLoad();
+      this.personService.Delete(person.id).subscribe({
+        next: () => {
+          this.toastService.success('Pessoa excluída!', 'Sucesso');
+          this.onLoad();
+        },
+        error: (error: HttpErrorResponse) => {
+          if (error.status == 404) {
+              this.toastService.error('Pessoa não localizada.', 'Atenção!');
+          }
+          else {
+            this.toastService.error(
+              'Tente novamente mais tarde.', 'Erro inesperado'
+            );
+          }
+          console.error(error);
+        }
       })
     }
   }

@@ -1,6 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Person } from 'src/app/models/person';
 import { PersonService } from 'src/app/services/person.service';
 
@@ -20,7 +22,8 @@ export class PersonFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private personService: PersonService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private toastService: ToastrService
   ) {}
 
   ngOnInit() {
@@ -67,21 +70,47 @@ export class PersonFormComponent implements OnInit {
   }
 
   Save(person: Person) {
-    this.personService.Save(person).subscribe((result) => {
-      alert('Pessoa adicionada com sucesso');
-      this.onCancel();
-    });
+    this.personService.Save(person).subscribe({
+      next: () => {
+        this.toastService.success('Pessoa adicionada!', 'Sucesso');
+        this.onBack();
+      },
+      error: (error: HttpErrorResponse) => {
+        this.toastService.error(
+          'Tente novamente mais tarde.', 'Erro inesperado'
+        );
+        console.error(error);
+      }
+    })
   }
 
   Update(person: Person) {
-    this.personService.Update(person).subscribe((result) => {
-      alert('Pessoa atualizada com sucesso');
-      this.onCancel();
-    });
+    this.personService.Update(person).subscribe({
+      next: () => {
+        this.toastService.success('Pessoa atualizada!', 'Sucesso');
+        this.onBack();
+      },
+      error: (error: HttpErrorResponse) => {
+        if (error.status == 404) {
+            this.toastService.error('Pessoa não localizada.', 'Atenção!');
+        }
+        else {
+          this.toastService.error(
+            'Tente novamente mais tarde.', 'Erro inesperado'
+          );
+        }
+        console.error(error);
+      }
+    })
+  }
+
+  onBack() {
+    this.router.navigate(['/'], { relativeTo: this.route });
   }
 
   onCancel() {
-    this.router.navigate(['/'], { relativeTo: this.route });
+    this.toastService.warning('As alterações não foram salvas.', 'Atenção');
+    this.onBack();
   }
 
   hasError(field: string, type = 'required') {
