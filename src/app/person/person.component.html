@@ -24,6 +24,9 @@
         </tr>
       </thead>
       <tbody>
+        <tr *ngIf="personList.length === 0">
+          <td colspan="5" class="text-center">Nenhum registro encontrado</td>
+        </tr>
         <tr *ngFor="let person of personList; let i = index">
           <td>{{ i + 1 }}</td>
           <td>{{ person.name }}</td>

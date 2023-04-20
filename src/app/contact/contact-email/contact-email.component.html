@@ -14,6 +14,9 @@
         </tr>
       </thead>
       <tbody>
+        <tr *ngIf="emailContacts.length === 0">
+          <td colspan="3" class="text-center">Nenhum registro encontrado</td>
+        </tr>
         <tr *ngFor="let email of emailContacts; let i = index">
           <td>{{ i + 1 }}</td>
           <td>{{ email.emailAddress }}</td>

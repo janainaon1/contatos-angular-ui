@@ -15,6 +15,9 @@
         </tr>
       </thead>
       <tbody>
+        <tr *ngIf="phoneContacts.length === 0">
+          <td colspan="4" class="text-center">Nenhum registro encontrado</td>
+        </tr>
         <tr *ngFor="let phone of phoneContacts; let i = index">
           <td>{{ i + 1 }}</td>
           <td>{{ phone.phoneNumber | mask: '(00) 00000-0000' }}</td>
