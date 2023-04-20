@@ -23,13 +23,28 @@
           <td>{{ phone.phoneNumber | mask: '(00) 00000-0000' }}</td>
           <td>{{ phone.isWhatsapp ? "Whatsapp" : "Telefone" }}</td>
           <td class="d-flex justify-content-end">
-            <div  class="px-2">
-              <button type="button" class="btn btn-sm btn-outline-primary" (click)="onEdit(phone)">
-                Alterar
+            <div class="btn-group" dropdown placement="bottom right">
+              <button id="button-basic" dropdownToggle type="button" class="btn btn-sm btn-secondary dropdown-toggle"
+                      aria-controls="dropdown-basic" title="Menu">
+                      <i-bs name="list" width="22" height="22"></i-bs>
+                      <span class="caret"></span>
               </button>
-            </div>
-            <div class="px-2">
-              <button type="button" class="btn btn-sm btn-outline-danger" (click)="onDelete(phone)">Excluir</button>
+              <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right"
+                  role="menu" aria-labelledby="button-basic">
+                <li role="menuitem">
+                <button type="button" class="dropdown-item" (click)="onEdit(phone)">
+                  <i-bs name="pencil" width="18" height="18"></i-bs>
+                  Alterar telefone
+                </button>
+                </li>
+                <li class="divider dropdown-divider"></li>
+                <li role="menuitem">
+                  <button type="button" class="dropdown-item text-danger" (click)="onDelete(phone)">
+                    <i-bs name="trash" width="18" height="18"></i-bs>
+                    Excluir telefone
+                  </button>
+                </li>
+              </ul>
             </div>
           </td>
         </tr>

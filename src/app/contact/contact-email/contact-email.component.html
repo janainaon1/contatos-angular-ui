@@ -1,6 +1,7 @@
 <div *ngIf="!isForm">
   <div class="d-flex justify-content-end">
     <button class="btn btn-sm btn-success" (click)="onAdd()">
+      <!-- <i-bs name="plus" width="22" height="22"></i-bs> -->
       Novo e-mail
     </button>
   </div>
@@ -21,13 +22,28 @@
           <td>{{ i + 1 }}</td>
           <td>{{ email.emailAddress }}</td>
           <td class="d-flex justify-content-end">
-            <div  class="px-2">
-              <button type="button" class="btn btn-sm btn-outline-primary" (click)="onEdit(email)">
-                Alterar
+            <div class="btn-group" dropdown placement="bottom right">
+              <button id="button-basic" dropdownToggle type="button" class="btn btn-sm btn-secondary dropdown-toggle"
+                      aria-controls="dropdown-basic" title="Menu">
+                      <i-bs name="list" width="22" height="22"></i-bs>
+                      <span class="caret"></span>
               </button>
-            </div>
-            <div class="px-2">
-              <button type="button" class="btn btn-sm btn-outline-danger" (click)="onDelete(email)">Excluir</button>
+              <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right"
+                  role="menu" aria-labelledby="button-basic">
+                <li role="menuitem">
+                <button type="button" class="dropdown-item" (click)="onEdit(email)">
+                  <i-bs name="pencil" width="18" height="18"></i-bs>
+                  Alterar e-mail
+                </button>
+                </li>
+                <li class="divider dropdown-divider"></li>
+                <li role="menuitem">
+                  <button type="button" class="dropdown-item text-danger" (click)="onDelete(email)">
+                    <i-bs name="trash" width="18" height="18"></i-bs>
+                    Excluir e-mail
+                  </button>
+                </li>
+              </ul>
             </div>
           </td>
         </tr>
