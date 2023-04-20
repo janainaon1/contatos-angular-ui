@@ -46,6 +46,12 @@
         <div class="invalid-feedback" *ngIf="hasError('emailAddress')">
           E-mail é obrigatório.
         </div>
+        <div class="invalid-feedback" *ngIf="hasError('emailAddress', 'email')">
+          E-mail inválido.
+        </div>
+        <div class="invalid-feedback" *ngIf="hasError('emailAddress', 'maxlength')">
+          E-mail deve ter no máximo 100 caracteres.
+        </div>
       </div>
     </div>
 

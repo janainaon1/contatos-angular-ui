@@ -13,6 +13,12 @@
             <div class="invalid-feedback" *ngIf="hasError('name')">
               Nome é obrigatório.
             </div>
+            <div class="invalid-feedback" *ngIf="hasError('name', 'minlength')">
+              Nome deve ter no mínimo 3 caracteres.
+            </div>
+            <div class="invalid-feedback" *ngIf="hasError('name', 'maxlength')">
+              Nome deve ter no máximo 100 caracteres.
+            </div>
           </div>
 
           <div class="col-sm-12 col-md-6 form-group mb-1">
@@ -20,6 +26,12 @@
             <input type="text" class="form-control form-control-sm text-capitalize" formControlName="lastName" [ngClass]="applyCssError('lastName')" />
             <div class="invalid-feedback" *ngIf="hasError('lastName')">
               Sobrenome é obrigatório.
+            </div>
+            <div class="invalid-feedback" *ngIf="hasError('name', 'minlength')">
+              Sobrenome deve ter no mínimo 3 caracteres.
+            </div>
+            <div class="invalid-feedback" *ngIf="hasError('name', 'maxlength')">
+              Sobrenome deve ter no máximo 100 caracteres.
             </div>
           </div>
 

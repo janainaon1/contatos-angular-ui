@@ -39,8 +39,8 @@ export class PersonFormComponent implements OnInit {
   initForm(person?: Person) {
     this.form = this.formBuilder.group({
       id: [person?.id],
-      name: [person?.name, Validators.required],
-      lastName: [person?.lastName, Validators.required],
+      name: [person?.name, Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(100)])],
+      lastName: [person?.lastName, Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(100)])],
       cpf: [person?.cpf, Validators.required],
     });
   }
