@@ -1,5 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+
 import { Person } from 'src/app/models/person';
 import { PhoneContact } from 'src/app/models/phone-contact';
 import { PhoneContactService } from 'src/app/services/phone-contact.service';
@@ -21,7 +24,8 @@ export class ContactPhoneComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private contactService: PhoneContactService
+    private contactService: PhoneContactService,
+    private toastService: ToastrService
   ) {}
 
   initForm(contact?: PhoneContact) {
@@ -60,32 +64,71 @@ export class ContactPhoneComponent {
   Save(contact: PhoneContact) {
     contact.personId = this.person.id;
 
-    this.contactService.Save(contact).subscribe((result) => {
-      alert('Telefone adicionado com sucesso');
-      this.onCancel();
-    });
+    this.contactService.Save(contact).subscribe({
+      next: () => {
+        this.toastService.success('Telefone adicionado!', 'Sucesso');
+        this.onReset();
+      },
+      error: (error: HttpErrorResponse) => {
+        this.toastService.error(
+          'Tente novamente mais tarde.', 'Erro inesperado'
+        );
+        console.error(error);
+      }
+    })
   }
 
   Update(contact: PhoneContact) {
-    this.contactService.Update(contact).subscribe((result) => {
-      alert('Telefone atualizado com sucesso');
-      this.onCancel();
-    });
+    this.contactService.Update(contact).subscribe({
+      next: () => {
+        this.toastService.success('Telefone atualizado!', 'Sucesso');
+        this.onReset();
+      },
+      error: (error: HttpErrorResponse) => {
+        if (error.status == 404) {
+            this.toastService.error('Contato não localizado.', 'Atenção!');
+        }
+        else {
+          this.toastService.error(
+            'Tente novamente mais tarde.', 'Erro inesperado'
+          );
+        }
+        console.error(error);
+      }
+    })
   }
 
   onDelete(contact: PhoneContact) {
     if (contact.id) {
-      this.contactService.Delete(contact.id).subscribe(result => {
-        alert('Telefone excluído com sucesso');
-        this.onCancel();
+      this.contactService.Delete(contact.id).subscribe({
+        next: () => {
+          this.toastService.success('Telefone excluído!', 'Sucesso');
+          this.onReset();
+        },
+        error: (error: HttpErrorResponse) => {
+          if (error.status == 404) {
+              this.toastService.error('Contato não localizado.', 'Atenção!');
+          }
+          else {
+            this.toastService.error(
+              'Tente novamente mais tarde.', 'Erro inesperado'
+            );
+          }
+          console.error(error);
+        }
       })
-    };
+    }
   }
 
-  onCancel() {
+  onReset() {
     this.submitted = false;
     this.isForm = false;
     this.onLoad.emit();
+  }
+
+  onCancel() {
+    this.toastService.warning('As alterações não foram salvas.', 'Atenção');
+    this.onReset();
   }
 
   hasError(field: string, type = 'required') {

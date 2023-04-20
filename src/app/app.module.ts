@@ -7,6 +7,9 @@ import { RouterModule } from '@angular/router';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
 import { AppComponent } from './app.component';
 import { ContactComponent } from './contact/contact.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -37,7 +40,12 @@ import { EmailContactService } from './services/email-contact.service';
     AppRoutingModule,
     NgxMaskDirective,
     NgxMaskPipe,
-    TabsModule.forRoot()
+    TabsModule.forRoot(),
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      progressBar: true,
+      timeOut: 3000
+    }),
   ],
   providers: [HttpClientModule, PersonService, provideNgxMask(), EmailContactService],
   bootstrap: [AppComponent],
