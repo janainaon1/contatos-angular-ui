@@ -31,7 +31,7 @@ import { icons } from './shared/icons';
     PersonComponent,
     PersonFormComponent,
     ContactEmailComponent,
-    ContactPhoneComponent,
+    ContactPhoneComponent
   ],
   imports: [
     RouterModule,
@@ -50,12 +50,15 @@ import { icons } from './shared/icons';
     ToastrModule.forRoot({
       progressBar: true,
       timeOut: 3000
-    }),
+    })
   ],
-  providers: [HttpClientModule, PersonService, provideNgxMask(), EmailContactService],
+  providers: [
+    HttpClientModule,
+    PersonService,
+    provideNgxMask(),
+    EmailContactService
+  ],
   bootstrap: [AppComponent],
-  schemas: [
-    NO_ERRORS_SCHEMA
-  ]
+  schemas: [NO_ERRORS_SCHEMA]
 })
-export class AppModule { }
+export class AppModule {}

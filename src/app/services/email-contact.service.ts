@@ -8,7 +8,7 @@ const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json'
   })
-}
+};
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,7 @@ export class EmailContactService {
 
   private readonly BASE_URL = `${environment.BASE_URL}/email-contact`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   GetAll(): Observable<EmailContact[]> {
     return this.http.get<EmailContact[]>(this.BASE_URL);
@@ -29,11 +29,19 @@ export class EmailContactService {
   }
 
   Save(emailContact: EmailContact): Observable<any> {
-    return this.http.post<EmailContact>(this.BASE_URL, emailContact, httpOptions)
+    return this.http.post<EmailContact>(
+      this.BASE_URL,
+      emailContact,
+      httpOptions
+    );
   }
 
   Update(emailContact: EmailContact): Observable<any> {
-    return this.http.put<EmailContact>(this.BASE_URL, emailContact, httpOptions)
+    return this.http.put<EmailContact>(
+      this.BASE_URL,
+      emailContact,
+      httpOptions
+    );
   }
 
   Delete(id: string): Observable<any> {

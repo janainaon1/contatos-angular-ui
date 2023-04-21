@@ -8,16 +8,15 @@ const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json'
   })
-}
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class PhoneContactService {
-
   private readonly BASE_URL = `${environment.BASE_URL}/phone-contact`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   GetAll(): Observable<PhoneContact[]> {
     return this.http.get<PhoneContact[]>(this.BASE_URL);
@@ -29,11 +28,11 @@ export class PhoneContactService {
   }
 
   Save(contact: PhoneContact): Observable<any> {
-    return this.http.post<PhoneContact>(this.BASE_URL, contact, httpOptions)
+    return this.http.post<PhoneContact>(this.BASE_URL, contact, httpOptions);
   }
 
   Update(contact: PhoneContact): Observable<any> {
-    return this.http.put<PhoneContact>(this.BASE_URL, contact, httpOptions)
+    return this.http.put<PhoneContact>(this.BASE_URL, contact, httpOptions);
   }
 
   Delete(id: string): Observable<any> {

@@ -13,7 +13,6 @@ import { PhoneContactService } from 'src/app/services/phone-contact.service';
   styleUrls: ['./contact-phone.component.css']
 })
 export class ContactPhoneComponent {
-
   @Input() person!: Person;
   @Input() phoneContacts: PhoneContact[] = [];
 
@@ -31,7 +30,14 @@ export class ContactPhoneComponent {
   initForm(contact?: PhoneContact) {
     this.form = this.formBuilder.group({
       id: [contact?.id],
-      phoneNumber: [contact?.phoneNumber, Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(11)])],
+      phoneNumber: [
+        contact?.phoneNumber,
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(10),
+          Validators.maxLength(11)
+        ])
+      ],
       isWhatsapp: [contact?.isWhatsapp ?? true],
       personId: [contact?.personId]
     });
@@ -71,11 +77,12 @@ export class ContactPhoneComponent {
       },
       error: (error: HttpErrorResponse) => {
         this.toastService.error(
-          'Tente novamente mais tarde.', 'Erro inesperado'
+          'Tente novamente mais tarde.',
+          'Erro inesperado'
         );
         console.error(error);
       }
-    })
+    });
   }
 
   Update(contact: PhoneContact) {
@@ -86,16 +93,16 @@ export class ContactPhoneComponent {
       },
       error: (error: HttpErrorResponse) => {
         if (error.status == 404) {
-            this.toastService.error('Contato não localizado.', 'Atenção!');
-        }
-        else {
+          this.toastService.error('Contato não localizado.', 'Atenção!');
+        } else {
           this.toastService.error(
-            'Tente novamente mais tarde.', 'Erro inesperado'
+            'Tente novamente mais tarde.',
+            'Erro inesperado'
           );
         }
         console.error(error);
       }
-    })
+    });
   }
 
   onDelete(contact: PhoneContact) {
@@ -107,16 +114,16 @@ export class ContactPhoneComponent {
         },
         error: (error: HttpErrorResponse) => {
           if (error.status == 404) {
-              this.toastService.error('Contato não localizado.', 'Atenção!');
-          }
-          else {
+            this.toastService.error('Contato não localizado.', 'Atenção!');
+          } else {
             this.toastService.error(
-              'Tente novamente mais tarde.', 'Erro inesperado'
+              'Tente novamente mais tarde.',
+              'Erro inesperado'
             );
           }
           console.error(error);
         }
-      })
+      });
     }
   }
 
@@ -143,8 +150,8 @@ export class ContactPhoneComponent {
     const field = this.form.get(campo);
 
     return {
-      'is-invalid': !field?.valid && (this.submitted || field?.touched),
+      'is-invalid': !field?.valid && (this.submitted || field?.touched)
       //  'is-valid': field?.valid,
-    }
+    };
   }
 }

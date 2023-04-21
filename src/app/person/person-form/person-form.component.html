@@ -6,10 +6,13 @@
 
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="row">
-
           <div class="col-sm-12 col-md-6 form-group mb-1">
             <label>Nome</label>
-            <input type="text" class="form-control form-control-sm text-capitalize" formControlName="name" [ngClass]="applyCssError('name')" />
+            <input
+              type="text"
+              class="form-control form-control-sm text-capitalize"
+              formControlName="name"
+              [ngClass]="applyCssError('name')" />
             <div class="invalid-feedback" *ngIf="hasError('name')">
               Nome é obrigatório.
             </div>
@@ -23,7 +26,11 @@
 
           <div class="col-sm-12 col-md-6 form-group mb-1">
             <label>Sobrenome</label>
-            <input type="text" class="form-control form-control-sm text-capitalize" formControlName="lastName" [ngClass]="applyCssError('lastName')" />
+            <input
+              type="text"
+              class="form-control form-control-sm text-capitalize"
+              formControlName="lastName"
+              [ngClass]="applyCssError('lastName')" />
             <div class="invalid-feedback" *ngIf="hasError('lastName')">
               Sobrenome é obrigatório.
             </div>
@@ -37,7 +44,12 @@
 
           <div class="col-sm-12 col-md-6 form-group mb-1">
             <label>CPF</label>
-            <input type="text" class="form-control form-control-sm" formControlName="cpf" mask="000.000.000-00" [ngClass]="applyCssError('cpf')" />
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              formControlName="cpf"
+              mask="000.000.000-00"
+              [ngClass]="applyCssError('cpf')" />
             <div class="invalid-feedback" *ngIf="hasError('cpf')">
               CPF é obrigatório.
             </div>
@@ -50,9 +62,7 @@
         <div class="form-group text-center mt-3">
           <button type="submit" class="btn btn-success">Salvar</button>
           &nbsp;
-          <a class="btn btn-secondary" (click)="onCancel()">
-            Cancelar
-          </a>
+          <a class="btn btn-secondary" (click)="onCancel()"> Cancelar </a>
         </div>
       </form>
     </div>

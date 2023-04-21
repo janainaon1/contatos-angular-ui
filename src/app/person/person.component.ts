@@ -7,17 +7,16 @@ import { PersonService } from 'src/app/services/person.service';
 @Component({
   selector: 'app-person',
   templateUrl: './person.component.html',
-  styleUrls: ['./person.component.css']
+  styleUrls: ['./person.component.css'],
 })
 export class PersonComponent implements OnInit {
-
-  title = "Lista de Pessoas";
+  title = 'Lista de Pessoas';
   personList: Person[] = [];
 
   constructor(
     private personService: PersonService,
     private toastService: ToastrService
-    ) {}
+  ) {}
 
   ngOnInit() {
     this.onLoad();
@@ -38,16 +37,16 @@ export class PersonComponent implements OnInit {
         },
         error: (error: HttpErrorResponse) => {
           if (error.status == 404) {
-              this.toastService.error('Pessoa não localizada.', 'Atenção!');
-          }
-          else {
+            this.toastService.error('Pessoa não localizada.', 'Atenção!');
+          } else {
             this.toastService.error(
-              'Tente novamente mais tarde.', 'Erro inesperado'
+              'Tente novamente mais tarde.',
+              'Erro inesperado'
             );
           }
           console.error(error);
-        }
-      })
+        },
+      });
     }
   }
 }

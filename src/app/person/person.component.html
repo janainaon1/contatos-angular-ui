@@ -1,22 +1,32 @@
-  <div class="container p-5">
-    <div class="p-2 d-flex justify-content-between align-items-center">
-      <div>
-        <h3 class="color-main">{{ title }}</h3>
-      </div>
-      <div>
-        <a class="btn btn-success d-flex" routerLinkActive="active" routerLink="/person/form">
-          <i-bs name="person-plus" width="18" height="18" style="margin-top: -2px;"></i-bs>
-          <span class="mx-2">
-            Nova Pessoa
-          </span>
-        </a>
-      </div>
+<div class="container p-5">
+  <div class="p-2 d-flex justify-content-between align-items-center">
+    <div>
+      <h3 class="color-main">{{ title }}</h3>
     </div>
+    <div>
+      <a
+        class="btn btn-success d-flex"
+        routerLinkActive="active"
+        routerLink="/person/form"
+      >
+        <i-bs
+          name="person-plus"
+          width="18"
+          height="18"
+          style="margin-top: -2px"
+        ></i-bs>
+        <span class="mx-2"> Nova Pessoa </span>
+      </a>
+    </div>
+  </div>
 
-    <hr />
+  <hr />
 
-    <div class="p-2 table-responsive">
-    <table class="table table-striped table-hover tbl-custom" *ngIf="personList">
+  <div class="p-2">
+    <table
+      class="table table-striped table-hover tbl-custom"
+      *ngIf="personList"
+    >
       <thead class="rounded">
         <tr>
           <th scope="col">#</th>
@@ -34,31 +44,58 @@
           <td data-label="#">{{ i + 1 }}</td>
           <td data-label="Nome">{{ person.name }}</td>
           <td data-label="Sobrenome">{{ person.lastName }}</td>
-          <td data-label="CPF">{{ person.cpf | mask: '000.000.000-00' }}</td>
+          <td data-label="CPF">{{ person.cpf | mask : '000.000.000-00' }}</td>
           <td class="d-flex justify-content-end">
-            <div class="btn-group" dropdown placement="bottom right" triggers="hover" #dp="bs-dropdown">
-              <button id="button-basic" dropdownToggle type="button" class="btn btn-sm btn-secondary dropdown-toggle"
-                      aria-controls="dropdown-basic" title="Menu">
-                      <i-bs name="list" width="22" height="22"></i-bs>
-                      <span class="caret"></span>
+            <div
+              class="btn-group"
+              dropdown
+              placement="bottom right"
+              triggers="hover"
+              #dp="bs-dropdown"
+            >
+              <button
+                id="button-basic"
+                dropdownToggle
+                type="button"
+                class="btn btn-sm btn-secondary dropdown-toggle"
+                aria-controls="dropdown-basic"
+                title="Menu"
+              >
+                <i-bs name="list" width="22" height="22"></i-bs>
+                <span class="caret"></span>
               </button>
-              <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right"
-                  role="menu" aria-labelledby="button-basic" (mouseleave)="dp.hide()">
+              <ul
+                id="dropdown-basic"
+                *dropdownMenu
+                class="dropdown-menu dropdown-menu-right"
+                role="menu"
+                aria-labelledby="button-basic"
+                (mouseleave)="dp.hide()"
+              >
                 <li role="menuitem">
-                  <a class="dropdown-item" routerLink="person/{{person.id}}/contacts">
+                  <a
+                    class="dropdown-item"
+                    routerLink="person/{{ person.id }}/contacts"
+                  >
                     <i-bs name="list-ul" width="18" height="18"></i-bs>
                     Lista de contatos
                   </a>
                 </li>
                 <li role="menuitem">
-                  <a class="dropdown-item" routerLink="/person/form/{{person.id}}">
+                  <a
+                    class="dropdown-item"
+                    routerLink="/person/form/{{ person.id }}"
+                  >
                     <i-bs name="pencil" width="18" height="18"></i-bs>
                     Alterar dados
                   </a>
                 </li>
                 <li class="divider dropdown-divider"></li>
                 <li role="menuitem">
-                  <button class="dropdown-item text-danger" (click)="onDelete(person)">
+                  <button
+                    class="dropdown-item text-danger"
+                    (click)="onDelete(person)"
+                  >
                     <i-bs name="trash" width="18" height="18"></i-bs>
                     Excluir pessoa
                   </button>
@@ -70,5 +107,4 @@
       </tbody>
     </table>
   </div>
-
-  </div>
+</div>

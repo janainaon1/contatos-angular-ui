@@ -9,7 +9,7 @@ import { PersonService } from 'src/app/services/person.service';
 @Component({
   selector: 'app-person-form',
   templateUrl: './person-form.component.html',
-  styleUrls: ['./person-form.component.css'],
+  styleUrls: ['./person-form.component.css']
 })
 export class PersonFormComponent implements OnInit {
   form!: FormGroup;
@@ -42,9 +42,23 @@ export class PersonFormComponent implements OnInit {
   initForm(person?: Person) {
     this.form = this.formBuilder.group({
       id: [person?.id],
-      name: [person?.name, Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(100)])],
-      lastName: [person?.lastName, Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(100)])],
-      cpf: [person?.cpf, Validators.required],
+      name: [
+        person?.name,
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(100)
+        ])
+      ],
+      lastName: [
+        person?.lastName,
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(100)
+        ])
+      ],
+      cpf: [person?.cpf, Validators.required]
     });
   }
 
@@ -77,11 +91,12 @@ export class PersonFormComponent implements OnInit {
       },
       error: (error: HttpErrorResponse) => {
         this.toastService.error(
-          'Tente novamente mais tarde.', 'Erro inesperado'
+          'Tente novamente mais tarde.',
+          'Erro inesperado'
         );
         console.error(error);
       }
-    })
+    });
   }
 
   Update(person: Person) {
@@ -92,16 +107,16 @@ export class PersonFormComponent implements OnInit {
       },
       error: (error: HttpErrorResponse) => {
         if (error.status == 404) {
-            this.toastService.error('Pessoa não localizada.', 'Atenção!');
-        }
-        else {
+          this.toastService.error('Pessoa não localizada.', 'Atenção!');
+        } else {
           this.toastService.error(
-            'Tente novamente mais tarde.', 'Erro inesperado'
+            'Tente novamente mais tarde.',
+            'Erro inesperado'
           );
         }
         console.error(error);
       }
-    })
+    });
   }
 
   onBack() {
@@ -125,8 +140,8 @@ export class PersonFormComponent implements OnInit {
     const field = this.form.get(campo);
 
     return {
-      'is-invalid': !field?.valid && (this.submitted || field?.touched),
+      'is-invalid': !field?.valid && (this.submitted || field?.touched)
       //  'is-valid': field?.valid,
-    }
+    };
   }
 }

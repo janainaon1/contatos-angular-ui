@@ -12,8 +12,7 @@ import { PhoneContact } from '../models/phone-contact';
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent implements OnInit {
-
-  title = "Lista de contatos";
+  title = 'Lista de contatos';
   @ViewChild('listTabs') listTabs!: TabsetComponent;
   id!: string;
   person!: Person;

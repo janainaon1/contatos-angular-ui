@@ -10,10 +10,9 @@ import { EmailContactService } from 'src/app/services/email-contact.service';
 @Component({
   selector: 'app-contact-email',
   templateUrl: './contact-email.component.html',
-  styleUrls: ['./contact-email.component.css']
+  styleUrls: ['./contact-email.component.css'],
 })
 export class ContactEmailComponent {
-
   @Input() person!: Person;
   @Input() emailContacts: EmailContact[] = [];
 
@@ -31,9 +30,16 @@ export class ContactEmailComponent {
   initForm(contact?: EmailContact) {
     this.form = this.formBuilder.group({
       id: [contact?.id],
-      emailAddress: [contact?.emailAddress,
-        Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(100), Validators.email])],
-      personId: [contact?.personId]
+      emailAddress: [
+        contact?.emailAddress,
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(6),
+          Validators.maxLength(100),
+          Validators.email,
+        ]),
+      ],
+      personId: [contact?.personId],
     });
   }
 
@@ -71,11 +77,12 @@ export class ContactEmailComponent {
       },
       error: (error: HttpErrorResponse) => {
         this.toastService.error(
-          'Tente novamente mais tarde.', 'Erro inesperado'
+          'Tente novamente mais tarde.',
+          'Erro inesperado'
         );
         console.error(error);
-      }
-    })
+      },
+    });
   }
 
   Update(contact: EmailContact) {
@@ -86,16 +93,16 @@ export class ContactEmailComponent {
       },
       error: (error: HttpErrorResponse) => {
         if (error.status == 404) {
-            this.toastService.error('Contato não localizado.', 'Atenção!');
-        }
-        else {
+          this.toastService.error('Contato não localizado.', 'Atenção!');
+        } else {
           this.toastService.error(
-            'Tente novamente mais tarde.', 'Erro inesperado'
+            'Tente novamente mais tarde.',
+            'Erro inesperado'
           );
         }
         console.error(error);
-      }
-    })
+      },
+    });
   }
 
   onDelete(contact: EmailContact) {
@@ -107,16 +114,16 @@ export class ContactEmailComponent {
         },
         error: (error: HttpErrorResponse) => {
           if (error.status == 404) {
-              this.toastService.error('Contato não localizado.', 'Atenção!');
-          }
-          else {
+            this.toastService.error('Contato não localizado.', 'Atenção!');
+          } else {
             this.toastService.error(
-              'Tente novamente mais tarde.', 'Erro inesperado'
+              'Tente novamente mais tarde.',
+              'Erro inesperado'
             );
           }
           console.error(error);
-        }
-      })
+        },
+      });
     }
   }
 
@@ -145,6 +152,6 @@ export class ContactEmailComponent {
     return {
       'is-invalid': !field?.valid && (this.submitted || field?.touched),
       //  'is-valid': field?.valid,
-    }
+    };
   }
 }

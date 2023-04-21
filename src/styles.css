@@ -5,7 +5,7 @@
 /* Tabs */
 .tab-content {
   padding: 20px;
-  border: 1px solid #DEE2E6;
+  border: 1px solid #dee2e6;
   border-top-color: rgb(222, 226, 230);
   border-top-style: solid;
   border-top-width: 1px;
@@ -23,9 +23,8 @@
 }
 /* Tabs FIM */
 
-
 .color-main {
-  color: #3A72B9;
+  color: #3a72b9;
 }
 
 @media screen and (max-width: 1000px) {
@@ -42,7 +41,7 @@
 
   table td {
     display: block;
-    font-size: .9em;
+    font-size: 0.9em;
     text-align: right !important;
     border-top: 0 !important;
     border: none;
