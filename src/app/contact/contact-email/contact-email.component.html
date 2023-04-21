@@ -19,8 +19,8 @@
           <td colspan="3" class="text-center">Nenhum registro encontrado</td>
         </tr>
         <tr *ngFor="let email of emailContacts; let i = index">
-          <td>{{ i + 1 }}</td>
-          <td>{{ email.emailAddress }}</td>
+          <td data-label="#">{{ i + 1 }}</td>
+          <td data-label="E-mail">{{ email.emailAddress }}</td>
           <td class="d-flex justify-content-end">
             <div class="btn-group" dropdown placement="bottom right">
               <button id="button-basic" dropdownToggle type="button" class="btn btn-sm btn-secondary dropdown-toggle"

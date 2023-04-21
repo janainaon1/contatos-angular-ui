@@ -1,5 +1,4 @@
-
-.tbl-custom thead {
+table.tbl-custom thead {
   background-color: #86ADDF;
   color: white;
   padding: 10px;
@@ -9,7 +8,7 @@
   margin: 10px;
 }
 
-.tbl-custom tbody tr:hover {
+table.tbl-custom tbody tr:hover {
   background-color: #c7d6e9;
   color: white;
 }

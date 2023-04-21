@@ -27,3 +27,31 @@
 .color-main {
   color: #3A72B9;
 }
+
+@media screen and (max-width: 1000px) {
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+  table td {
+    display: block;
+    font-size: .9em;
+    text-align: right !important;
+    border-top: 0 !important;
+    border: none;
+  }
+
+  table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+}

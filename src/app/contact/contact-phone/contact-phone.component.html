@@ -19,9 +19,9 @@
           <td colspan="4" class="text-center">Nenhum registro encontrado</td>
         </tr>
         <tr *ngFor="let phone of phoneContacts; let i = index">
-          <td>{{ i + 1 }}</td>
-          <td>{{ phone.phoneNumber | mask: '(00) 00000-0000' }}</td>
-          <td>{{ phone.isWhatsapp ? "Whatsapp" : "Telefone" }}</td>
+          <td data-label="#">{{ i + 1 }}</td>
+          <td data-label="Número">{{ phone.phoneNumber | mask: '(00) 00000-0000' }}</td>
+          <td data-label="Tipo">{{ phone.isWhatsapp ? "Whatsapp" : "Telefone" }}</td>
           <td class="d-flex justify-content-end">
             <div class="btn-group" dropdown placement="bottom right">
               <button id="button-basic" dropdownToggle type="button" class="btn btn-sm btn-secondary dropdown-toggle"
@@ -60,7 +60,7 @@
       <div class="col-md-6 form-group mb-1">
         <label>Número</label>
         <input type="text" class="form-control form-control-sm text-lowercase" formControlName="phoneNumber"
-          [ngClass]="applyCssError('phoneNumber')" mask="(00) 00000-0000" placeholder="(00) 00000-0000" />
+          [ngClass]="applyCssError('phoneNumber')" mask="(00) 00009-0000" placeholder="(00) 00000-0000" />
         <div class="invalid-feedback" *ngIf="hasError('phoneNumber')">
           Número de telefone é obrigatório.
         </div>
