@@ -3,12 +3,7 @@
     <div class="col-12 border border-light rounded p-5" *ngIf="form">
       <div class="d-flex justify-content-between align-items-center">
         <div class="p-2 d-flex align-items-center">
-          <div>
-            <img
-              src="../../assets/images/c_blue_logo.png"
-              alt="Logo Lista de Contatos"
-              width="100" />
-          </div>
+          <app-logo></app-logo>
           <h3 class="color-main">{{ title }}</h3>
         </div>
         <div>
@@ -21,7 +16,7 @@
 
       <hr />
 
-      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <form [formGroup]="form">
         <div class="row">
           <div class="col-sm-12 col-md-6 form-group mb-1">
             <label>Nome</label>
@@ -76,10 +71,10 @@
           </div>
         </div>
 
-        <div class="form-group text-center mt-3">
-          <button type="submit" class="btn btn-success">Salvar</button>
-          &nbsp;
-          <a class="btn btn-secondary" (click)="onCancel()"> Cancelar </a>
+        <div class="text-center">
+          <app-form-footer-options
+            (onCancel)="onCancel()"
+            (onSave)="onSubmit()"></app-form-footer-options>
         </div>
       </form>
     </div>

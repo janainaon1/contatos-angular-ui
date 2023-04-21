@@ -23,6 +23,8 @@ import { ContactEmailComponent } from './contact/contact-email/contact-email.com
 import { ContactPhoneComponent } from './contact/contact-phone/contact-phone.component';
 import { EmailContactService } from './services/email-contact.service';
 import { icons } from './shared/icons';
+import { LogoComponent } from './components/logo/logo.component';
+import { FormFooterOptionsComponent } from './components/form-footer-options/form-footer-options.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { icons } from './shared/icons';
     PersonComponent,
     PersonFormComponent,
     ContactEmailComponent,
-    ContactPhoneComponent
+    ContactPhoneComponent,
+    LogoComponent,
+    FormFooterOptionsComponent
   ],
   imports: [
     RouterModule,

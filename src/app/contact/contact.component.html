@@ -1,12 +1,7 @@
 <div class="container p-5 bg-light max-height">
   <div class="p-2 d-flex justify-content-between align-items-center">
     <div class="d-flex flex-row align-items-center">
-      <div>
-        <img
-          src="../../assets/images/c_blue_logo.png"
-          alt="Logo Lista de Contatos"
-          width="100" />
-      </div>
+      <app-logo></app-logo>
       <div>
         <h3 class="color-main">{{ title }}:</h3>
         <h4 *ngIf="person">{{ person.name }} {{ person.lastName }}</h4>
