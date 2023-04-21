@@ -1,9 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import 'ngx-toastr/toastr';
+
 /* Tabs */
 .tab-content {
   padding: 20px;
-  border: 1px solid #DEE2E6;
+  border: 1px solid #dee2e6;
   border-top-color: rgb(222, 226, 230);
   border-top-style: solid;
   border-top-width: 1px;
@@ -20,3 +22,35 @@
   color: var(--blue-80);
 }
 /* Tabs FIM */
+
+.color-main {
+  color: #3a72b9;
+}
+
+@media screen and (max-width: 1000px) {
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+  table td {
+    display: block;
+    font-size: 0.9em;
+    text-align: right !important;
+    border-top: 0 !important;
+    border: none;
+  }
+
+  table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+}

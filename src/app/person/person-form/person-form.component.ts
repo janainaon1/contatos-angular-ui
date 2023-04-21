@@ -1,13 +1,15 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Person } from 'src/app/models/person';
 import { PersonService } from 'src/app/services/person.service';
 
 @Component({
   selector: 'app-person-form',
   templateUrl: './person-form.component.html',
-  styleUrls: ['./person-form.component.css'],
+  styleUrls: ['./person-form.component.css']
 })
 export class PersonFormComponent implements OnInit {
   form!: FormGroup;
@@ -20,7 +22,8 @@ export class PersonFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private personService: PersonService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private toastService: ToastrService
   ) {}
 
   ngOnInit() {
@@ -29,7 +32,6 @@ export class PersonFormComponent implements OnInit {
       if (this.id) {
         this.getPessoa(this.id);
         this.title = 'Atualizar pessoa';
-        this.initForm();
       } else {
         this.title = 'Adicionar pessoa';
         this.initForm();
@@ -40,9 +42,23 @@ export class PersonFormComponent implements OnInit {
   initForm(person?: Person) {
     this.form = this.formBuilder.group({
       id: [person?.id],
-      name: [person?.name, Validators.required],
-      lastName: [person?.lastName, Validators.required],
-      cpf: [person?.cpf, Validators.required],
+      name: [
+        person?.name,
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(100)
+        ])
+      ],
+      lastName: [
+        person?.lastName,
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(100)
+        ])
+      ],
+      cpf: [person?.cpf, Validators.required]
     });
   }
 
@@ -68,21 +84,48 @@ export class PersonFormComponent implements OnInit {
   }
 
   Save(person: Person) {
-    this.personService.Save(person).subscribe((result) => {
-      alert('Pessoa adicionada com sucesso');
-      this.onCancel();
+    this.personService.Save(person).subscribe({
+      next: () => {
+        this.toastService.success('Pessoa adicionada!', 'Sucesso');
+        this.onBack();
+      },
+      error: (error: HttpErrorResponse) => {
+        this.toastService.error(
+          'Tente novamente mais tarde.',
+          'Erro inesperado'
+        );
+        console.error(error);
+      }
     });
   }
 
   Update(person: Person) {
-    this.personService.Update(person).subscribe((result) => {
-      alert('Pessoa atualizada com sucesso');
-      this.onCancel();
+    this.personService.Update(person).subscribe({
+      next: () => {
+        this.toastService.success('Pessoa atualizada!', 'Sucesso');
+        this.onBack();
+      },
+      error: (error: HttpErrorResponse) => {
+        if (error.status == 404) {
+          this.toastService.error('Pessoa não localizada.', 'Atenção!');
+        } else {
+          this.toastService.error(
+            'Tente novamente mais tarde.',
+            'Erro inesperado'
+          );
+        }
+        console.error(error);
+      }
     });
   }
 
-  onCancel() {
+  onBack() {
     this.router.navigate(['/'], { relativeTo: this.route });
+  }
+
+  onCancel() {
+    this.toastService.warning('As alterações não foram salvas.', 'Atenção');
+    this.onBack();
   }
 
   hasError(field: string, type = 'required') {
@@ -97,8 +140,8 @@ export class PersonFormComponent implements OnInit {
     const field = this.form.get(campo);
 
     return {
-      'is-invalid': !field?.valid && (this.submitted || field?.touched),
-       'is-valid': field?.valid,
-    }
+      'is-invalid': !field?.valid && (this.submitted || field?.touched)
+      //  'is-valid': field?.valid,
+    };
   }
 }

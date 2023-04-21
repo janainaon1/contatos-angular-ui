@@ -12,8 +12,7 @@ import { PhoneContact } from '../models/phone-contact';
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent implements OnInit {
-
-  title = "Lista de contatos";
+  title = 'Lista de contatos';
   @ViewChild('listTabs') listTabs!: TabsetComponent;
   id!: string;
   person!: Person;
@@ -26,6 +25,10 @@ export class ContactComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.onLoad();
+  }
+
+  onLoad() {
     this.route.params.subscribe((params) => {
       this.id = params['id'];
       if (this.id) {
@@ -40,9 +43,5 @@ export class ContactComponent implements OnInit {
       this.emailContacts = this.person.emailContacts;
       this.phoneContacts = this.person.phoneContacts;
     });
-  }
-
-  onDelete(person: Person) {
-    console.log(person);
   }
 }

@@ -1,16 +1,14 @@
-
-
 .tbl-custom thead {
-  background-color: #9370DB;
+  background-color: #86addf;
   color: white;
   padding: 10px;
-  border: 1px solid #9370DB;
+  border-bottom: 1px solid #86addf;
   border-top-right-radius: 30px;
   border-top-left-radius: 30px;
   margin: 10px;
 }
 
 .tbl-custom tbody tr:hover {
-  background-color: #d2c7e9;
+  background-color: #c7d6e9;
   color: white;
 }
