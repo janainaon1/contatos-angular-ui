@@ -1,20 +1,22 @@
-<div class="container p-5">
+<div class="container p-5 bg-light max-height">
   <div class="p-2 d-flex justify-content-between align-items-center">
-    <div>
+    <div class="d-flex flex-row align-items-center">
+      <img
+        src="../../assets/images/c_blue_logo.png"
+        alt="Logo Lista de Contatos"
+        width="100" />
       <h3 class="color-main">{{ title }}</h3>
     </div>
     <div>
       <a
         class="btn btn-success d-flex"
         routerLinkActive="active"
-        routerLink="/person/form"
-      >
+        routerLink="/person/form">
         <i-bs
           name="person-plus"
           width="18"
           height="18"
-          style="margin-top: -2px"
-        ></i-bs>
+          style="margin-top: -2px"></i-bs>
         <span class="mx-2"> Nova Pessoa </span>
       </a>
     </div>
@@ -25,8 +27,7 @@
   <div class="p-2">
     <table
       class="table table-striped table-hover tbl-custom"
-      *ngIf="personList"
-    >
+      *ngIf="personList">
       <thead class="rounded">
         <tr>
           <th scope="col">#</th>
@@ -46,21 +47,14 @@
           <td data-label="Sobrenome">{{ person.lastName }}</td>
           <td data-label="CPF">{{ person.cpf | mask : '000.000.000-00' }}</td>
           <td class="d-flex justify-content-end">
-            <div
-              class="btn-group"
-              dropdown
-              placement="bottom right"
-              triggers="hover"
-              #dp="bs-dropdown"
-            >
+            <div class="btn-group" dropdown placement="bottom right">
               <button
                 id="button-basic"
                 dropdownToggle
                 type="button"
                 class="btn btn-sm btn-secondary dropdown-toggle"
                 aria-controls="dropdown-basic"
-                title="Menu"
-              >
+                title="Menu">
                 <i-bs name="list" width="22" height="22"></i-bs>
                 <span class="caret"></span>
               </button>
@@ -69,14 +63,11 @@
                 *dropdownMenu
                 class="dropdown-menu dropdown-menu-right"
                 role="menu"
-                aria-labelledby="button-basic"
-                (mouseleave)="dp.hide()"
-              >
+                aria-labelledby="button-basic">
                 <li role="menuitem">
                   <a
                     class="dropdown-item"
-                    routerLink="person/{{ person.id }}/contacts"
-                  >
+                    routerLink="person/{{ person.id }}/contacts">
                     <i-bs name="list-ul" width="18" height="18"></i-bs>
                     Lista de contatos
                   </a>
@@ -84,8 +75,7 @@
                 <li role="menuitem">
                   <a
                     class="dropdown-item"
-                    routerLink="/person/form/{{ person.id }}"
-                  >
+                    routerLink="/person/form/{{ person.id }}">
                     <i-bs name="pencil" width="18" height="18"></i-bs>
                     Alterar dados
                   </a>
@@ -94,8 +84,7 @@
                 <li role="menuitem">
                   <button
                     class="dropdown-item text-danger"
-                    (click)="onDelete(person)"
-                  >
+                    (click)="onDelete(person)">
                     <i-bs name="trash" width="18" height="18"></i-bs>
                     Excluir pessoa
                   </button>

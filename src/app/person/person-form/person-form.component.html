@@ -1,7 +1,24 @@
-<div class="container p-5">
+<div class="container bg-light max-height">
   <div class="row">
-    <div class="col-12 border border-light rounded p-5 shadow" *ngIf="form">
-      <h3 class="color-main">{{ title }}</h3>
+    <div class="col-12 border border-light rounded p-5" *ngIf="form">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="p-2 d-flex align-items-center">
+          <div>
+            <img
+              src="../../assets/images/c_blue_logo.png"
+              alt="Logo Lista de Contatos"
+              width="100" />
+          </div>
+          <h3 class="color-main">{{ title }}</h3>
+        </div>
+        <div>
+          <a class="btn btn-secondary" routerLink="/">
+            <i-bs name="arrow-left-short" width="22" height="22"></i-bs>
+            Voltar para lista
+          </a>
+        </div>
+      </div>
+
       <hr />
 
       <form [formGroup]="form" (ngSubmit)="onSubmit()">

@@ -1,8 +1,16 @@
-<div class="container p-5">
+<div class="container p-5 bg-light max-height">
   <div class="p-2 d-flex justify-content-between align-items-center">
-    <div>
-      <h3 class="color-main">{{ title }}:</h3>
-      <h4 *ngIf="person">{{ person.name }} {{ person.lastName }}</h4>
+    <div class="d-flex flex-row align-items-center">
+      <div>
+        <img
+          src="../../assets/images/c_blue_logo.png"
+          alt="Logo Lista de Contatos"
+          width="100" />
+      </div>
+      <div>
+        <h3 class="color-main">{{ title }}:</h3>
+        <h4 *ngIf="person">{{ person.name }} {{ person.lastName }}</h4>
+      </div>
     </div>
     <div>
       <a class="btn btn-secondary" routerLink="/">
@@ -21,15 +29,13 @@
           <app-contact-email
             [person]="person"
             [emailContacts]="emailContacts"
-            (onLoad)="onLoad()"
-          ></app-contact-email>
+            (onLoad)="onLoad()"></app-contact-email>
         </tab>
         <tab heading="Telefones de contato">
           <app-contact-phone
             [person]="person"
             [phoneContacts]="phoneContacts"
-            (onLoad)="onLoad()"
-          ></app-contact-phone>
+            (onLoad)="onLoad()"></app-contact-phone>
         </tab>
       </tabset>
     </div>

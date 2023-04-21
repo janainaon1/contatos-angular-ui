@@ -2,6 +2,10 @@
 
 @import 'ngx-toastr/toastr';
 
+body {
+  background: #2850ad;
+}
+
 /* Tabs */
 .tab-content {
   padding: 20px;
@@ -53,4 +57,13 @@
     font-weight: bold;
     text-transform: uppercase;
   }
+}
+
+.max-height {
+  min-height: 100vh;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+  background-color: #f8f9fa !important;
+  color: #212529;
 }
