@@ -25,6 +25,8 @@ import { EmailContactService } from './services/email-contact.service';
 import { icons } from './shared/icons';
 import { LogoComponent } from './components/logo/logo.component';
 import { FormFooterOptionsComponent } from './components/form-footer-options/form-footer-options.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogService } from './services/confirm-dialog.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { FormFooterOptionsComponent } from './components/form-footer-options/for
     ContactEmailComponent,
     ContactPhoneComponent,
     LogoComponent,
-    FormFooterOptionsComponent
+    FormFooterOptionsComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     RouterModule,
@@ -53,16 +56,17 @@ import { FormFooterOptionsComponent } from './components/form-footer-options/for
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       progressBar: true,
-      timeOut: 3000
-    })
+      timeOut: 3000,
+    }),
   ],
   providers: [
     HttpClientModule,
     PersonService,
     provideNgxMask(),
-    EmailContactService
+    EmailContactService,
+    ConfirmDialogService,
   ],
   bootstrap: [AppComponent],
-  schemas: [NO_ERRORS_SCHEMA]
+  schemas: [NO_ERRORS_SCHEMA],
 })
 export class AppModule {}
