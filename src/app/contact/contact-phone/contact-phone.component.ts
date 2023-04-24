@@ -10,7 +10,7 @@ import { PhoneContactService } from 'src/app/services/phone-contact.service';
 @Component({
   selector: 'app-contact-phone',
   templateUrl: './contact-phone.component.html',
-  styleUrls: ['./contact-phone.component.css']
+  styleUrls: ['./contact-phone.component.css'],
 })
 export class ContactPhoneComponent {
   @Input() person!: Person;
@@ -35,11 +35,11 @@ export class ContactPhoneComponent {
         Validators.compose([
           Validators.required,
           Validators.minLength(10),
-          Validators.maxLength(11)
-        ])
+          Validators.maxLength(11),
+        ]),
       ],
       isWhatsapp: [contact?.isWhatsapp ?? true],
-      personId: [contact?.personId]
+      personId: [contact?.personId],
     });
   }
 
@@ -81,7 +81,7 @@ export class ContactPhoneComponent {
           'Erro inesperado'
         );
         console.error(error);
-      }
+      },
     });
   }
 
@@ -101,7 +101,7 @@ export class ContactPhoneComponent {
           );
         }
         console.error(error);
-      }
+      },
     });
   }
 
@@ -122,7 +122,7 @@ export class ContactPhoneComponent {
             );
           }
           console.error(error);
-        }
+        },
       });
     }
   }
@@ -150,7 +150,7 @@ export class ContactPhoneComponent {
     const field = this.form.get(campo);
 
     return {
-      'is-invalid': !field?.valid && (this.submitted || field?.touched)
+      'is-invalid': !field?.valid && (this.submitted || field?.touched),
       //  'is-valid': field?.valid,
     };
   }

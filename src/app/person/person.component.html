@@ -5,10 +5,7 @@
       <h3 class="color-main">{{ title }}</h3>
     </div>
     <div>
-      <a
-        class="btn btn-success d-flex"
-        routerLinkActive="active"
-        routerLink="/person/form">
+      <a class="btn btn-success d-flex" routerLink="/person/form">
         <i-bs
           name="person-plus"
           width="18"
@@ -23,7 +20,7 @@
 
   <div class="p-2">
     <table
-      class="table table-striped table-hover tbl-custom"
+      class="table table-striped table-hover table-basic"
       *ngIf="personList">
       <thead class="rounded">
         <tr>

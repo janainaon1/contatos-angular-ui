@@ -1,82 +1,78 @@
-<div class="container bg-light max-height">
-  <div class="row">
-    <div class="col-12 border border-light rounded p-5" *ngIf="form">
-      <div class="d-flex justify-content-between align-items-center">
-        <div class="p-2 d-flex align-items-center">
-          <app-logo></app-logo>
-          <h3 class="color-main">{{ title }}</h3>
+<div class="container p-5 bg-light max-height">
+  <div class="p-2 d-flex justify-content-between align-items-center">
+    <div class="d-flex flex-row align-items-center">
+      <app-logo></app-logo>
+      <h3 class="color-main">{{ title }}</h3>
+    </div>
+    <div>
+      <a class="btn btn-secondary d-flex" routerLink="/">
+        <i-bs name="arrow-left-short" width="22" height="22"></i-bs>
+        <span class="mx-2"> Voltar para lista</span>
+      </a>
+    </div>
+  </div>
+
+  <hr />
+
+  <form [formGroup]="form">
+    <div class="row">
+      <div class="col-sm-12 col-md-6 form-group mb-1">
+        <label>Nome</label>
+        <input
+          type="text"
+          class="form-control form-control-sm text-capitalize"
+          formControlName="name"
+          [ngClass]="applyCssError('name')" />
+        <div class="invalid-feedback" *ngIf="hasError('name')">
+          Nome é obrigatório.
         </div>
-        <div>
-          <a class="btn btn-secondary" routerLink="/">
-            <i-bs name="arrow-left-short" width="22" height="22"></i-bs>
-            Voltar para lista
-          </a>
+        <div class="invalid-feedback" *ngIf="hasError('name', 'minlength')">
+          Nome deve ter no mínimo 3 caracteres.
+        </div>
+        <div class="invalid-feedback" *ngIf="hasError('name', 'maxlength')">
+          Nome deve ter no máximo 100 caracteres.
         </div>
       </div>
 
-      <hr />
-
-      <form [formGroup]="form">
-        <div class="row">
-          <div class="col-sm-12 col-md-6 form-group mb-1">
-            <label>Nome</label>
-            <input
-              type="text"
-              class="form-control form-control-sm text-capitalize"
-              formControlName="name"
-              [ngClass]="applyCssError('name')" />
-            <div class="invalid-feedback" *ngIf="hasError('name')">
-              Nome é obrigatório.
-            </div>
-            <div class="invalid-feedback" *ngIf="hasError('name', 'minlength')">
-              Nome deve ter no mínimo 3 caracteres.
-            </div>
-            <div class="invalid-feedback" *ngIf="hasError('name', 'maxlength')">
-              Nome deve ter no máximo 100 caracteres.
-            </div>
-          </div>
-
-          <div class="col-sm-12 col-md-6 form-group mb-1">
-            <label>Sobrenome</label>
-            <input
-              type="text"
-              class="form-control form-control-sm text-capitalize"
-              formControlName="lastName"
-              [ngClass]="applyCssError('lastName')" />
-            <div class="invalid-feedback" *ngIf="hasError('lastName')">
-              Sobrenome é obrigatório.
-            </div>
-            <div class="invalid-feedback" *ngIf="hasError('name', 'minlength')">
-              Sobrenome deve ter no mínimo 3 caracteres.
-            </div>
-            <div class="invalid-feedback" *ngIf="hasError('name', 'maxlength')">
-              Sobrenome deve ter no máximo 100 caracteres.
-            </div>
-          </div>
-
-          <div class="col-sm-12 col-md-6 form-group mb-1">
-            <label>CPF</label>
-            <input
-              type="text"
-              class="form-control form-control-sm"
-              formControlName="cpf"
-              mask="000.000.000-00"
-              [ngClass]="applyCssError('cpf')" />
-            <div class="invalid-feedback" *ngIf="hasError('cpf')">
-              CPF é obrigatório.
-            </div>
-            <div class="invalid-feedback" *ngIf="hasError('cpf', 'mask')">
-              CPF no formato (000.000.000-00)
-            </div>
-          </div>
+      <div class="col-sm-12 col-md-6 form-group mb-1">
+        <label>Sobrenome</label>
+        <input
+          type="text"
+          class="form-control form-control-sm text-capitalize"
+          formControlName="lastName"
+          [ngClass]="applyCssError('lastName')" />
+        <div class="invalid-feedback" *ngIf="hasError('lastName')">
+          Sobrenome é obrigatório.
         </div>
-
-        <div class="text-center">
-          <app-form-footer-options
-            (onCancel)="onCancel()"
-            (onSave)="onSubmit()"></app-form-footer-options>
+        <div class="invalid-feedback" *ngIf="hasError('name', 'minlength')">
+          Sobrenome deve ter no mínimo 3 caracteres.
         </div>
-      </form>
+        <div class="invalid-feedback" *ngIf="hasError('name', 'maxlength')">
+          Sobrenome deve ter no máximo 100 caracteres.
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-6 form-group mb-1">
+        <label>CPF</label>
+        <input
+          type="text"
+          class="form-control form-control-sm"
+          formControlName="cpf"
+          mask="000.000.000-00"
+          [ngClass]="applyCssError('cpf')" />
+        <div class="invalid-feedback" *ngIf="hasError('cpf')">
+          CPF é obrigatório.
+        </div>
+        <div class="invalid-feedback" *ngIf="hasError('cpf', 'mask')">
+          CPF no formato (000.000.000-00)
+        </div>
+      </div>
     </div>
-  </div>
+
+    <div class="text-center">
+      <app-form-footer-options
+        (onCancel)="onCancel()"
+        (onSave)="onSubmit()"></app-form-footer-options>
+    </div>
+  </form>
 </div>

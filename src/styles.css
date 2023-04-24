@@ -4,6 +4,7 @@
 
 body {
   background: #2850ad;
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
 }
 
 /* Tabs */
@@ -31,8 +32,23 @@ body {
   color: #3a72b9;
 }
 
+table.table-basic thead {
+  background-color: #2850ad;
+  color: white;
+  padding: 10px;
+  border-bottom: 1px solid #2850ad;
+  border-top-right-radius: 30px;
+  border-top-left-radius: 30px;
+  margin: 10px;
+}
+
+table.table-basic tbody tr:hover {
+  background-color: #c7d6e9;
+  color: white;
+}
+
 @media screen and (max-width: 1000px) {
-  table thead {
+  table.table-basic thead {
     border: none;
     clip: rect(0 0 0 0);
     height: 1px;
@@ -43,7 +59,7 @@ body {
     width: 1px;
   }
 
-  table td {
+  table.table-basic td {
     display: block;
     font-size: 0.9em;
     text-align: right !important;
@@ -51,7 +67,7 @@ body {
     border: none;
   }
 
-  table td::before {
+  table.table-basic td::before {
     content: attr(data-label);
     float: left;
     font-weight: bold;
