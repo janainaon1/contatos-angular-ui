@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 
 import { Person } from 'src/app/models/person';
 import { PhoneContact } from 'src/app/models/phone-contact';
+import { ConfirmDialogService } from 'src/app/services/confirm-dialog.service';
 import { PhoneContactService } from 'src/app/services/phone-contact.service';
 
 @Component({
@@ -24,7 +25,8 @@ export class ContactPhoneComponent {
   constructor(
     private formBuilder: FormBuilder,
     private contactService: PhoneContactService,
-    private toastService: ToastrService
+    private toastService: ToastrService,
+    private confirmDialogService: ConfirmDialogService
   ) {}
 
   initForm(contact?: PhoneContact) {
@@ -106,6 +108,16 @@ export class ContactPhoneComponent {
   }
 
   onDelete(contact: PhoneContact) {
+    this.confirmDialogService.confirmThis(
+      'Tem certeza que deseja deletar?',
+      () => {
+        this.DeletePhone(contact);
+      },
+      function () {}
+    );
+  }
+
+  DeletePhone(contact: PhoneContact) {
     if (contact.id) {
       this.contactService.Delete(contact.id).subscribe({
         next: () => {

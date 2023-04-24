@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Person } from 'src/app/models/person';
 import { EmailContact } from 'src/app/models/email-contact';
 import { EmailContactService } from 'src/app/services/email-contact.service';
+import { ConfirmDialogService } from 'src/app/services/confirm-dialog.service';
 
 @Component({
   selector: 'app-contact-email',
@@ -24,7 +25,8 @@ export class ContactEmailComponent {
   constructor(
     private formBuilder: FormBuilder,
     private contactService: EmailContactService,
-    private toastService: ToastrService
+    private toastService: ToastrService,
+    private confirmDialogService: ConfirmDialogService
   ) {}
 
   initForm(contact?: EmailContact) {
@@ -106,6 +108,16 @@ export class ContactEmailComponent {
   }
 
   onDelete(contact: EmailContact) {
+    this.confirmDialogService.confirmThis(
+      'Tem certeza que deseja deletar?',
+      () => {
+        this.DeleteEmail(contact);
+      },
+      function () {}
+    );
+  }
+
+  DeleteEmail(contact: EmailContact) {
     if (contact.id) {
       this.contactService.Delete(contact.id).subscribe({
         next: () => {
